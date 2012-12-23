@@ -3,8 +3,10 @@
     package="com.jukaela.Jukaela"
     android:versionCode="1"
     android:versionName="1.0" >
- 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="17" />
@@ -23,6 +25,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.FeedActivity"
+            android:label="@string/title_activity_feed" >
         </activity>
     </application>
 

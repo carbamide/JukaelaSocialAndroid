@@ -1,5 +1,6 @@
 package com.jukaela.Jukaela;
 
+import java.io.Serializable;
 import java.net.CookieStore;
 
 import org.apache.http.HttpResponse;
@@ -11,6 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,14 +20,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -38,6 +44,7 @@ public class LoginActivity extends Activity {
 	private String emailString;
 	private String passwordString;
 
+	private CheckBox rememberMeCheckBox;
 	private EditText emailTextField;
 	private EditText passwordTextField;
 	private View loginFormView;
@@ -72,13 +79,25 @@ public class LoginActivity extends Activity {
 		loginFormView = findViewById(R.id.login_form);
 		loginStatusView = findViewById(R.id.login_status);
 		loginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
-
+		rememberMeCheckBox = (CheckBox)findViewById(R.id.rememberMe);
+		
 		findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
 						attemptLogin();
 					}
 				});
+		
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
+		
+        Boolean rememberMeBool = sharedPrefs.getBoolean("rememberMe", false);
+        
+        if (rememberMeBool == true) {
+        	rememberMeCheckBox.setChecked(true);
+        	
+        	emailTextField.setText(sharedPrefs.getString("email", null));
+        	passwordTextField.setText(sharedPrefs.getString("password", null));
+        }
 	}
 
 	@Override
@@ -186,7 +205,7 @@ public class LoginActivity extends Activity {
 				
 				loginInformation.put("email", emailString);
 				loginInformation.put("password", passwordString);
-				
+												
 				JSONObject parameters = new JSONObject();
 				
 				parameters.put("session", loginInformation);
@@ -197,9 +216,7 @@ public class LoginActivity extends Activity {
 					JSONObject responseObject = new JSONObject(response);
 					
 					System.out.println("The response JSONObject is " + responseObject);
-					
-					//	@"{\"first\" : \"%i\", \"last\" : \"%i\"}
-					
+										
 					JSONObject feedObject = new JSONObject();
 					
 					feedObject.put("first", 0);
@@ -207,10 +224,24 @@ public class LoginActivity extends Activity {
 					
 					String feedResponse = makeRequest("http://cold-planet-7717.herokuapp.com/home.json", feedObject);
 					
-					JSONObject feedResponseObject = new JSONObject(feedResponse);
+					JSONArray feedResponseObject = new JSONArray(feedResponse);
 					
-					System.out.println("The feedResponseOBject is " + feedResponseObject);
+					System.out.println("The feedResponseObject is " + feedResponseObject);
+					System.out.println("The count of the object is " + feedResponseObject.length());
+					
+					if (rememberMeCheckBox.isChecked()) {
+						SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
+						
+						sharedPrefs.edit().putString("email", emailString).commit();
+						sharedPrefs.edit().putString("password", passwordString).commit();
+						sharedPrefs.edit().putBoolean("rememberMe", true).commit();
+						
+					}
+					Intent i = new Intent(LoginActivity.this, FeedActivity.class);
+					i.putExtra("tempArray", feedResponseObject.toString());
+					startActivity(i);
 
+					showProgress(false);
 				}
 				catch (Exception e) {
 					return false;
@@ -262,8 +293,6 @@ public class LoginActivity extends Activity {
 			HttpResponse response = httpclient.execute(httpost, httpContext);
 			
 		    String responseString = EntityUtils.toString(response.getEntity());
-
-			System.out.println("The response is - " + responseString);
 
 			return responseString;
 		}
