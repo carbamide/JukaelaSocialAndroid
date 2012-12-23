@@ -1,17 +1,5 @@
 package com.jukaela.Jukaela;
 
-import java.io.Serializable;
-import java.net.CookieStore;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +39,6 @@ public class LoginActivity extends Activity {
 	private View loginStatusView;
 	private TextView loginStatusMessageView;
 
-	private BasicCookieStore cookieStore = new BasicCookieStore();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -211,7 +198,7 @@ public class LoginActivity extends Activity {
 				parameters.put("session", loginInformation);
 
 				try {
-					String response = makeRequest("http://cold-planet-7717.herokuapp.com/sessions.json", parameters);
+					String response = NetworkFactory.makeRequest("http://cold-planet-7717.herokuapp.com/sessions.json", parameters);
 					
 					JSONObject responseObject = new JSONObject(response);
 					
@@ -222,7 +209,7 @@ public class LoginActivity extends Activity {
 					feedObject.put("first", 0);
 					feedObject.put("last", 20);
 					
-					String feedResponse = makeRequest("http://cold-planet-7717.herokuapp.com/home.json", feedObject);
+					String feedResponse = NetworkFactory.makeRequest("http://cold-planet-7717.herokuapp.com/home.json", feedObject);
 					
 					JSONArray feedResponseObject = new JSONArray(feedResponse);
 					
@@ -237,6 +224,9 @@ public class LoginActivity extends Activity {
 						sharedPrefs.edit().putBoolean("rememberMe", true).commit();
 						
 					}
+					
+					NetworkFactory.setUserID(responseObject.getString("id"));
+					
 					Intent i = new Intent(LoginActivity.this, FeedActivity.class);
 					i.putExtra("tempArray", feedResponseObject.toString());
 					startActivity(i);
@@ -262,7 +252,7 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
-				
+				System.out.println("Success!");
 			} 
 			else {
 				passwordTextField.setError(getString(R.string.error_incorrect_password));
@@ -276,25 +266,6 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 		}
 
-		public String makeRequest(String path, JSONObject holder) throws Exception {						
-			DefaultHttpClient httpclient = new DefaultHttpClient();
-			
-			HttpContext httpContext = new BasicHttpContext();
-			httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-			
-			HttpPost httpost = new HttpPost(path);
 
-			StringEntity stringEntityToSend = new StringEntity(holder.toString());
-			
-			httpost.setEntity(stringEntityToSend);
-			httpost.setHeader("Accept", "application/json");
-			httpost.setHeader("Content-type", "application/json");
-
-			HttpResponse response = httpclient.execute(httpost, httpContext);
-			
-		    String responseString = EntityUtils.toString(response.getEntity());
-
-			return responseString;
-		}
 	}
 }
