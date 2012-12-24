@@ -46,6 +46,8 @@ public class LoginActivity extends Activity {
 
 		setContentView(R.layout.activity_login);
 
+		setTitle("Jukaela Social");
+		
 		emailString = getIntent().getStringExtra(EXTRA_EMAIL);
 		emailTextField = (EditText) findViewById(R.id.email);
 		emailTextField.setText(emailString);

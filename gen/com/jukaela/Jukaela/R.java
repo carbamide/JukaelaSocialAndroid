@@ -960,8 +960,9 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int cancel=0x7f040046;
+        public static final int cancel=0x7f040049;
         public static final int contentText=0x7f04003d;
+        public static final int delete=0x7f040047;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040027;
         public static final int email=0x7f040037;
@@ -981,8 +982,10 @@ containing a value of this type.
         public static final int normal=0x7f040001;
         public static final int password=0x7f040038;
         public static final int post=0x7f04003e;
-        public static final int refresh=0x7f040045;
+        public static final int refresh=0x7f040048;
         public static final int rememberMe=0x7f04003b;
+        public static final int reply=0x7f040045;
+        public static final int repost=0x7f040046;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
@@ -1031,8 +1034,9 @@ containing a value of this type.
         public static final int activity_feed=0x7f0b0000;
         public static final int activity_login=0x7f0b0001;
         public static final int activity_post=0x7f0b0002;
-        public static final int feed_menu=0x7f0b0003;
-        public static final int post_menu=0x7f0b0004;
+        public static final int feed_context_menu=0x7f0b0003;
+        public static final int feed_menu=0x7f0b0004;
+        public static final int post_menu=0x7f0b0005;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
