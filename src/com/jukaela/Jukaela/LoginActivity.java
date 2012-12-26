@@ -47,7 +47,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 
 		setTitle("Jukaela Social");
-		
+
 		emailString = getIntent().getStringExtra(EXTRA_EMAIL);
 		emailTextField = (EditText) findViewById(R.id.email);
 		emailTextField.setText(emailString);
@@ -69,24 +69,26 @@ public class LoginActivity extends Activity {
 		loginStatusView = findViewById(R.id.login_status);
 		loginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
 		rememberMeCheckBox = (CheckBox)findViewById(R.id.rememberMe);
-		
+
 		findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						attemptLogin();
-					}
-				});
-		
+			@Override
+			public void onClick(View view) {
+				attemptLogin();
+			}
+		});
+
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
-		
-        Boolean rememberMeBool = sharedPrefs.getBoolean("rememberMe", false);
-        
-        if (rememberMeBool == true) {
-        	rememberMeCheckBox.setChecked(true);
-        	
-        	emailTextField.setText(sharedPrefs.getString("email", null));
-        	passwordTextField.setText(sharedPrefs.getString("password", null));
-        }
+
+		Boolean rememberMeBool = sharedPrefs.getBoolean("rememberMe", false);
+
+		if (rememberMeBool == true) {
+			rememberMeCheckBox.setChecked(true);
+
+			emailTextField.setText(sharedPrefs.getString("email", null));
+			passwordTextField.setText(sharedPrefs.getString("password", null));
+
+			attemptLogin();
+		}
 	}
 
 	@Override
@@ -108,7 +110,7 @@ public class LoginActivity extends Activity {
 		passwordString = passwordTextField.getText().toString();
 
 		boolean cancel = false;
-		
+
 		View focusView = null;
 
 		if (TextUtils.isEmpty(passwordString)) {
@@ -118,24 +120,24 @@ public class LoginActivity extends Activity {
 		} 
 		else if (passwordString.length() < 4) {
 			passwordTextField.setError(getString(R.string.error_invalid_password));
-			
+
 			focusView = passwordTextField;
-			
+
 			cancel = true;
 		}
 
 		if (TextUtils.isEmpty(emailString)) {
 			emailTextField.setError(getString(R.string.error_field_required));
-			
+
 			focusView = emailTextField;
-			
+
 			cancel = true;
 		} 
 		else if (!emailString.contains("@")) {
 			emailTextField.setError(getString(R.string.error_invalid_email));
-			
+
 			focusView = emailTextField;
-			
+
 			cancel = true;
 		}
 
@@ -144,12 +146,12 @@ public class LoginActivity extends Activity {
 		} 
 		else {
 			loginStatusMessageView.setText(R.string.login_progress_signing_in);
-			
+
 			showProgress(true);
-			
+
 			authTask = new UserLoginTask();
 			authTask.execute((Void) null);
-			
+
 			System.out.println("Attempting login");
 		}
 	}
@@ -191,44 +193,43 @@ public class LoginActivity extends Activity {
 
 			try {
 				JSONObject loginInformation = new JSONObject();
-				
+
 				loginInformation.put("email", emailString);
 				loginInformation.put("password", passwordString);
-												
+
 				JSONObject parameters = new JSONObject();
-				
+
 				parameters.put("session", loginInformation);
 
 				try {
 					String response = NetworkFactory.makeRequest("http://cold-planet-7717.herokuapp.com/sessions.json", parameters);
-					
+
 					JSONObject responseObject = new JSONObject(response);
-					
+
 					System.out.println("The response JSONObject is " + responseObject);
-										
+
 					JSONObject feedObject = new JSONObject();
-					
+
 					feedObject.put("first", 0);
 					feedObject.put("last", 20);
-					
+
 					String feedResponse = NetworkFactory.makeRequest("http://cold-planet-7717.herokuapp.com/home.json", feedObject);
-					
+
 					JSONArray feedResponseObject = new JSONArray(feedResponse);
-					
+
 					System.out.println("The feedResponseObject is " + feedResponseObject);
 					System.out.println("The count of the object is " + feedResponseObject.length());
-					
+
 					if (rememberMeCheckBox.isChecked()) {
 						SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
-						
+
 						sharedPrefs.edit().putString("email", emailString).commit();
 						sharedPrefs.edit().putString("password", passwordString).commit();
 						sharedPrefs.edit().putBoolean("rememberMe", true).commit();
-						
 					}
-					
+
 					NetworkFactory.setUserID(responseObject.getString("id"));
-					
+
 					Intent i = new Intent(LoginActivity.this, FeedActivity.class);
 					i.putExtra("tempArray", feedResponseObject.toString());
 					startActivity(i);

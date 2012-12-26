@@ -918,6 +918,7 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int ic_launcher=0x7f02006f;
+        public static final int list_divider=0x7f020070;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
@@ -960,9 +961,10 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int cancel=0x7f040049;
+        public static final int avatar=0x7f040043;
+        public static final int cancel=0x7f04004d;
         public static final int contentText=0x7f04003d;
-        public static final int delete=0x7f040047;
+        public static final int delete=0x7f04004b;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040027;
         public static final int email=0x7f040037;
@@ -974,18 +976,20 @@ containing a value of this type.
         public static final int login_form=0x7f040036;
         public static final int login_status=0x7f040034;
         public static final int login_status_message=0x7f040035;
-        public static final int menu_forgot_password=0x7f040043;
-        public static final int menu_post=0x7f040042;
-        public static final int menu_settings=0x7f040044;
-        public static final int message=0x7f040041;
+        public static final int menu_forgot_password=0x7f040047;
+        public static final int menu_post=0x7f040046;
+        public static final int menu_settings=0x7f040048;
+        public static final int message=0x7f040042;
+        public static final int micropost_content=0x7f040044;
         public static final int name=0x7f040040;
         public static final int normal=0x7f040001;
         public static final int password=0x7f040038;
         public static final int post=0x7f04003e;
-        public static final int refresh=0x7f040048;
+        public static final int refresh=0x7f04004c;
         public static final int rememberMe=0x7f04003b;
-        public static final int reply=0x7f040045;
-        public static final int repost=0x7f040046;
+        public static final int reply=0x7f040049;
+        public static final int repost=0x7f04004a;
+        public static final int repostString=0x7f040045;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
@@ -993,6 +997,7 @@ containing a value of this type.
         public static final int tabMode=0x7f040003;
         public static final int thumbnail=0x7f04003f;
         public static final int useLogo=0x7f040004;
+        public static final int username=0x7f040041;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
@@ -1027,8 +1032,9 @@ containing a value of this type.
         public static final int activity_post=0x7f030019;
         public static final int feed_activity_menu=0x7f03001a;
         public static final int list_item_layout=0x7f03001b;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001c;
-        public static final int sherlock_spinner_item=0x7f03001d;
+        public static final int row=0x7f03001c;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
+        public static final int sherlock_spinner_item=0x7f03001e;
     }
     public static final class menu {
         public static final int activity_feed=0x7f0b0000;
