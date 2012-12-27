@@ -685,10 +685,57 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f060006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f060007;
         public static final int abs__holo_blue_light=0x7f060008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f060009;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f06000a;
-        public static final int abs__primary_text_holo_dark=0x7f06000b;
-        public static final int abs__primary_text_holo_light=0x7f06000c;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f060036;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f060037;
+        public static final int abs__primary_text_holo_dark=0x7f060038;
+        public static final int abs__primary_text_holo_light=0x7f060039;
+        public static final int black=0x7f060010;
+        public static final int btn_blue_background_end=0x7f060021;
+        public static final int btn_blue_background_start=0x7f060020;
+        public static final int btn_orange_background_end=0x7f060025;
+        public static final int btn_orange_background_start=0x7f060024;
+        public static final int btn_red_background_end=0x7f060023;
+        public static final int btn_red_background_start=0x7f060022;
+        public static final int dm_background_disaster_end=0x7f060027;
+        public static final int dm_background_disaster_start=0x7f060026;
+        public static final int general_background_end=0x7f06001e;
+        public static final int general_background_start=0x7f06001f;
+        public static final int grey=0x7f060009;
+        public static final int headerBarTextOff=0x7f060013;
+        public static final int headerBarTextOn=0x7f060012;
+        public static final int post_background=0x7f06000d;
+        public static final int red=0x7f06000a;
+        public static final int text=0x7f06000e;
+        public static final int title=0x7f06000b;
+        public static final int titledisasterbackgroundcolor=0x7f060015;
+        public static final int titlenormalbackgroundcolor=0x7f060014;
+        public static final int transparent=0x7f06000c;
+        public static final int tweet_background_disaster_end=0x7f060019;
+        public static final int tweet_background_disaster_start=0x7f060018;
+        public static final int tweet_background_mention_end=0x7f06001b;
+        public static final int tweet_background_mention_start=0x7f06001a;
+        public static final int tweet_background_normal_end=0x7f060017;
+        public static final int tweet_background_normal_start=0x7f060016;
+        public static final int tweet_background_own_end=0x7f06001d;
+        public static final int tweet_background_own_start=0x7f06001c;
+        public static final int tweet_link=0x7f060011;
+        public static final int twimightBackgroundDark=0x7f060029;
+        public static final int twimightBackgroundDisaster=0x7f060032;
+        /**  new UI colors 
+         */
+        public static final int twimightBackgroundLight=0x7f060028;
+        public static final int twimightBackgroundMention=0x7f060031;
+        public static final int twimightBackgroundOwn=0x7f060030;
+        public static final int twimightButtonActive=0x7f060033;
+        public static final int twimightButtonBackground=0x7f06002e;
+        public static final int twimightButtonBackgroundShadow=0x7f06002f;
+        public static final int twimightHeaderBackground=0x7f06002c;
+        public static final int twimightHeaderBackgroundDisaster=0x7f060034;
+        public static final int twimightImageBorder=0x7f060035;
+        public static final int twimightSeparator=0x7f06002d;
+        public static final int twimightTextDark=0x7f06002a;
+        public static final int twimightTextLight=0x7f06002b;
+        public static final int white=0x7f06000f;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -961,43 +1008,47 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int avatar=0x7f040043;
-        public static final int cancel=0x7f04004d;
+        public static final int avatar=0x7f040046;
+        public static final int cancel=0x7f040051;
         public static final int contentText=0x7f04003d;
-        public static final int delete=0x7f04004b;
+        public static final int date=0x7f040047;
+        public static final int delete=0x7f04004f;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040027;
         public static final int email=0x7f040037;
         public static final int feed_list=0x7f040033;
         public static final int homeAsUp=0x7f040006;
-        public static final int linearLayout1=0x7f04003c;
+        public static final int linearLayout1=0x7f04003e;
         public static final int listMode=0x7f040002;
         public static final int login=0x7f040039;
         public static final int login_form=0x7f040036;
         public static final int login_status=0x7f040034;
         public static final int login_status_message=0x7f040035;
-        public static final int menu_forgot_password=0x7f040047;
-        public static final int menu_post=0x7f040046;
-        public static final int menu_settings=0x7f040048;
-        public static final int message=0x7f040042;
-        public static final int micropost_content=0x7f040044;
-        public static final int name=0x7f040040;
+        public static final int menu_forgot_password=0x7f04004b;
+        public static final int menu_post=0x7f04004a;
+        public static final int menu_settings=0x7f04004c;
+        public static final int message=0x7f040045;
+        public static final int micropost_content=0x7f040048;
+        public static final int name=0x7f040043;
         public static final int normal=0x7f040001;
         public static final int password=0x7f040038;
-        public static final int post=0x7f04003e;
-        public static final int refresh=0x7f04004c;
+        public static final int post=0x7f040041;
+        public static final int post_characters=0x7f04003f;
+        public static final int refresh=0x7f040050;
         public static final int rememberMe=0x7f04003b;
-        public static final int reply=0x7f040049;
-        public static final int repost=0x7f04004a;
-        public static final int repostString=0x7f040045;
+        public static final int reply=0x7f04004d;
+        public static final int repost=0x7f04004e;
+        public static final int repostString=0x7f040049;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
+        public static final int showNewTweetRoot=0x7f04003c;
         public static final int showTitle=0x7f040007;
         public static final int sign_in_button=0x7f04003a;
         public static final int tabMode=0x7f040003;
-        public static final int thumbnail=0x7f04003f;
+        public static final int threaded_reply_list=0x7f040040;
+        public static final int thumbnail=0x7f040042;
         public static final int useLogo=0x7f040004;
-        public static final int username=0x7f040041;
+        public static final int username=0x7f040044;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
@@ -1030,19 +1081,22 @@ containing a value of this type.
         public static final int activity_feed=0x7f030017;
         public static final int activity_login=0x7f030018;
         public static final int activity_post=0x7f030019;
-        public static final int feed_activity_menu=0x7f03001a;
-        public static final int list_item_layout=0x7f03001b;
-        public static final int row=0x7f03001c;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
-        public static final int sherlock_spinner_item=0x7f03001e;
+        public static final int activity_threaded_reply_activity=0x7f03001a;
+        public static final int feed_activity_menu=0x7f03001b;
+        public static final int list_item_layout=0x7f03001c;
+        public static final int row=0x7f03001d;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
+        public static final int sherlock_spinner_item=0x7f03001f;
     }
     public static final class menu {
         public static final int activity_feed=0x7f0b0000;
         public static final int activity_login=0x7f0b0001;
-        public static final int activity_post=0x7f0b0002;
-        public static final int feed_context_menu=0x7f0b0003;
-        public static final int feed_menu=0x7f0b0004;
-        public static final int post_menu=0x7f0b0005;
+        public static final int activity_main=0x7f0b0002;
+        public static final int activity_post=0x7f0b0003;
+        public static final int activity_threaded_replyies_activities=0x7f0b0004;
+        public static final int feed_context_menu=0x7f0b0005;
+        public static final int feed_menu=0x7f0b0006;
+        public static final int post_menu=0x7f0b0007;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1090,23 +1144,26 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
-        public static final int action_sign_in_register=0x7f090016;
-        public static final int action_sign_in_short=0x7f090017;
+        public static final int action_sign_in_register=0x7f090019;
+        public static final int action_sign_in_short=0x7f09001a;
         public static final int app_name=0x7f09000f;
-        public static final int error_field_required=0x7f09001d;
-        public static final int error_incorrect_password=0x7f09001c;
-        public static final int error_invalid_email=0x7f09001a;
-        public static final int error_invalid_password=0x7f09001b;
+        public static final int error_field_required=0x7f090020;
+        public static final int error_incorrect_password=0x7f09001f;
+        public static final int error_invalid_email=0x7f09001d;
+        public static final int error_invalid_password=0x7f09001e;
         public static final int hello_world=0x7f090010;
-        public static final int login_progress_signing_in=0x7f090019;
-        public static final int menu_forgot_password=0x7f090018;
+        public static final int login_progress_signing_in=0x7f09001c;
+        public static final int max_characters=0x7f090014;
+        public static final int menu_forgot_password=0x7f09001b;
         public static final int menu_settings=0x7f090011;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f090014;
-        public static final int prompt_password=0x7f090015;
+        public static final int prompt_email=0x7f090017;
+        public static final int prompt_password=0x7f090018;
         public static final int title_activity_feed=0x7f090012;
+        public static final int title_activity_main=0x7f090016;
         public static final int title_activity_post=0x7f090013;
+        public static final int title_activity_threaded_replyies_activities=0x7f090015;
     }
     public static final class style {
         /** 
