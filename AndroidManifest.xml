@@ -42,6 +42,10 @@
             android:name="com.jukaela.Jukaela.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.ImageViewerActivity"
+            android:label="@string/title_activity_image_viewer" >
+        </activity>
     </application>
 
 </manifest>

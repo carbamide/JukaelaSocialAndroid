@@ -9,5 +9,7 @@
     <string name="max_characters">256</string>
     <string name="title_activity_threaded_replyies_activities">ThreadedReplyiesActivities</string>
     <string name="title_activity_main">MainActivity</string>
-
+    <string name="title_activity_image_viewer">ImageViewerActivity</string>
+    <string name="done_item">Done</string>
+    
 </resources>
