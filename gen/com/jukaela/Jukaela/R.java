@@ -964,8 +964,9 @@ containing a value of this type.
         public static final int abs__textfield_searchview_holo_light=0x7f02006c;
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
-        public static final int ic_launcher=0x7f02006f;
-        public static final int list_divider=0x7f020070;
+        public static final int camera_icon=0x7f02006f;
+        public static final int ic_launcher=0x7f020070;
+        public static final int list_divider=0x7f020071;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
@@ -1020,8 +1021,8 @@ containing a value of this type.
         public static final int externalImage=0x7f04004b;
         public static final int feed_list=0x7f040033;
         public static final int homeAsUp=0x7f040006;
+        public static final int imageButton=0x7f04003f;
         public static final int imageViewer=0x7f040034;
-        public static final int linearLayout1=0x7f04003f;
         public static final int listMode=0x7f040002;
         public static final int login=0x7f04003a;
         public static final int login_form=0x7f040037;
