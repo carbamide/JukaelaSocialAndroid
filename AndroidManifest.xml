@@ -49,6 +49,10 @@
             android:name="com.jukaela.Jukaela.ImageViewerActivity"
             android:label="@string/title_activity_image_viewer" >
         </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.UsersWhoLiked"
+            android:label="@string/title_activity_users_who_liked" >
+        </activity>
     </application>
 
 </manifest>

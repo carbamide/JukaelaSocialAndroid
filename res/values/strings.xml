@@ -11,5 +11,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_image_viewer">ImageViewerActivity</string>
     <string name="done_item">Done</string>
-    
+    <string name="title_activity_users_who_liked">UsersWhoLiked</string>
+
 </resources>
