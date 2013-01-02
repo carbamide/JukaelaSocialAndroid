@@ -105,7 +105,7 @@ public class LoginActivity extends Activity {
 		if (authTask != null) {
 			return;
 		}
-		
+
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		emailTextField.setError(null);
@@ -197,58 +197,26 @@ public class LoginActivity extends Activity {
 			// TODO: attempt authentication against a network service.
 
 			try {
-				JSONObject loginInformation = new JSONObject();
+				JSONObject loginObject = NetworkFactory.login(emailString, passwordString);
+				
+				JSONArray feedResponseObject = NetworkFactory.getFeedFromTo(0, 20);
 
-				loginInformation.put("email", emailString);
-				loginInformation.put("password", passwordString);
+				if (rememberMeCheckBox.isChecked()) {
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
 
-				JSONObject parameters = new JSONObject();
-
-				parameters.put("session", loginInformation);
-
-				try {
-					String response = NetworkFactory.makeRequest("http://cold-planet-7717.herokuapp.com/sessions.json", parameters);
-
-					JSONObject responseObject = new JSONObject(response);
-
-					System.out.println("The response JSONObject is " + responseObject);
-
-					JSONObject feedObject = new JSONObject();
-
-					feedObject.put("first", 0);
-					feedObject.put("last", 20);
-
-					String feedResponse = NetworkFactory.makeRequest("http://cold-planet-7717.herokuapp.com/home.json", feedObject);
-
-					JSONArray feedResponseObject = new JSONArray(feedResponse);
-
-					System.out.println("The feedResponseObject is " + feedResponseObject);
-					System.out.println("The count of the object is " + feedResponseObject.length());
-
-					if (rememberMeCheckBox.isChecked()) {
-						SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
-
-						sharedPrefs.edit().putString("email", emailString).commit();
-						sharedPrefs.edit().putString("password", passwordString).commit();
-						sharedPrefs.edit().putBoolean("rememberMe", true).commit();
-					}
-
-					NetworkFactory.setUserID(responseObject.getString("id"));
-
-					Intent i = new Intent(LoginActivity.this, FeedActivity.class);
-					i.putExtra("tempArray", feedResponseObject.toString());
-					startActivity(i);
-
-					showProgress(false);
+					sharedPrefs.edit().putString("email", emailString).commit();
+					sharedPrefs.edit().putString("password", passwordString).commit();
+					sharedPrefs.edit().putBoolean("rememberMe", true).commit();
 				}
-				catch (Exception e) {
-					return false;
-				}
-			} 
-			catch (JSONException e) {
+
+				Intent i = new Intent(LoginActivity.this, FeedActivity.class);
+				i.putExtra("tempArray", feedResponseObject.toString());
+				startActivity(i);
+
+				showProgress(false);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-
-				return false;
 			}
 
 			return true;
