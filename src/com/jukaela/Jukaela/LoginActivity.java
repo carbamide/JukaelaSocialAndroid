@@ -1,6 +1,7 @@
 package com.jukaela.Jukaela;
 
 import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +27,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.urbanairship.AirshipConfigOptions;
+import com.urbanairship.Logger;
+import com.urbanairship.UAirship;
+import com.urbanairship.push.PushManager;
+import com.urbanairship.push.PushPreferences;
+
 public class LoginActivity extends Activity {
 
 	public static final String EXTRA_EMAIL = "com.jukaela.Jukaela.extra.EMAIL";
@@ -46,7 +53,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.activity_login);
 
 		setTitle("Jukaela Social");
@@ -198,7 +205,7 @@ public class LoginActivity extends Activity {
 
 			try {
 				JSONObject loginObject = NetworkFactory.login(emailString, passwordString);
-				
+
 				JSONArray feedResponseObject = NetworkFactory.getFeedFromTo(0, 20);
 
 				if (rememberMeCheckBox.isChecked()) {
