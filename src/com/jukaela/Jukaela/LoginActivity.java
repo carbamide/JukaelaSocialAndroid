@@ -2,14 +2,12 @@ package com.jukaela.Jukaela;
 
 import org.json.JSONArray;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -22,21 +20,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jukaela.Jukaela.R;
-import com.jukaela.Jukaela.R.id;
-import com.jukaela.Jukaela.R.layout;
-import com.jukaela.Jukaela.R.menu;
-import com.jukaela.Jukaela.R.string;
-import com.urbanairship.AirshipConfigOptions;
-import com.urbanairship.Logger;
-import com.urbanairship.UAirship;
-import com.urbanairship.push.PushManager;
-import com.urbanairship.push.PushPreferences;
 
 public class LoginActivity extends Activity {
 

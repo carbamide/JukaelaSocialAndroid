@@ -8,14 +8,11 @@ import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.jukaela.Jukaela.R;
-import com.jukaela.Jukaela.R.id;
-import com.jukaela.Jukaela.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -138,8 +135,6 @@ public class UserAdapter extends BaseAdapter implements ListAdapter {
 					Bitmap bitmap = result;
 
 					try {
-						System.out.println("Trying to save bitmap");
-
 						FileOutputStream out = activity.getApplicationContext().openFileOutput(emailAddress, Context.MODE_PRIVATE);
 
 						bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
@@ -147,7 +142,9 @@ public class UserAdapter extends BaseAdapter implements ListAdapter {
 					catch (FileNotFoundException e) {
 						e.printStackTrace();
 					}
-
+					catch (NullPointerException e) {
+						e.printStackTrace();
+					}
 					imageView.setImageBitmap(ImageHelper.getRoundedCornerBitmap(result, 8)); 
 				} 
 			} 

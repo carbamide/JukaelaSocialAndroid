@@ -1,19 +1,12 @@
 package com.jukaela.Jukaela;
 
-import org.json.JSONArray;
-
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.jukaela.Jukaela.R;
-import com.jukaela.Jukaela.R.id;
-import com.jukaela.Jukaela.R.layout;
-import com.jukaela.Jukaela.R.menu;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;

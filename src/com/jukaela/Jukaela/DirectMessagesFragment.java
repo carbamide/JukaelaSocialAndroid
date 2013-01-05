@@ -4,12 +4,9 @@ import org.json.JSONArray;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.jukaela.Jukaela.R;
-import com.jukaela.Jukaela.R.layout;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;

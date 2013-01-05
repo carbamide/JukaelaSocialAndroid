@@ -5,18 +5,13 @@ import org.json.JSONException;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.jukaela.Jukaela.R;
-import com.jukaela.Jukaela.R.id;
-import com.jukaela.Jukaela.R.layout;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.app.Activity;
 import android.content.Intent;
 
 public class UsersWhoLikedActivity extends SherlockActivity implements OnItemClickListener {

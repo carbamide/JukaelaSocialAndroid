@@ -23,14 +23,12 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.util.Base64;
-import android.view.WindowManager;
 
 
 @SuppressLint("DefaultLocale")

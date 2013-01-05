@@ -5,7 +5,6 @@ import org.json.JSONException;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -16,9 +15,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.jukaela.Jukaela.R;
-import com.jukaela.Jukaela.R.layout;
-import com.jukaela.Jukaela.R.menu;
-
 
 public class MainActivity extends SherlockFragmentActivity {
 
