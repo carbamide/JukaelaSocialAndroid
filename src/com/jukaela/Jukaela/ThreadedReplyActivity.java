@@ -39,7 +39,7 @@ public class ThreadedReplyActivity extends SherlockActivity {
 
 		Intent intent = getIntent();
 		tempArray = intent.getStringExtra("threadedReplies");
-
+		
 		try {
 			feedArray = new JSONArray(tempArray);
 		} catch (JSONException e1) {

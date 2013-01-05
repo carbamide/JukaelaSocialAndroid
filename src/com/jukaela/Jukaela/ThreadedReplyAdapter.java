@@ -78,14 +78,14 @@ public class ThreadedReplyAdapter extends BaseAdapter implements ListAdapter {
 		}
 
 		JSONObject jsonObject = getItem(position);  
-
+		
 		content = (TextView)convertView.findViewById(R.id.micropost_content);
-		name = (TextView)convertView.findViewById(R.id.showUserRealName);
-		thumbnail = (ImageView)convertView.findViewById(R.id.showUserProfileImage);
-		username = (TextView)convertView.findViewById(R.id.showUserScreenName);
+		name = (TextView)convertView.findViewById(R.id.name);
+		thumbnail = (ImageView)convertView.findViewById(R.id.avatar);
+		username = (TextView)convertView.findViewById(R.id.username);
 		date = (TextView)convertView.findViewById(R.id.date);
 
-		try {
+		try {			
 			content.setText(jsonObject.getString("content"));
 			name.setText(jsonObject.getString("name"));
 
@@ -117,6 +117,8 @@ public class ThreadedReplyAdapter extends BaseAdapter implements ListAdapter {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 

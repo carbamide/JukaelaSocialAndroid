@@ -212,7 +212,7 @@ public class FeedFragment extends SherlockFragment implements OnItemClickListene
 				else if (charSequenceItems[item].equals("Show Thread")) {
 					try {
 						JSONArray feedResponseObject = NetworkFactory.showThreadForMicropost(feedArray.getJSONObject(position).getInt("id"));
-
+						
 						Intent i = new Intent(getActivity(), ThreadedReplyActivity.class);
 						i.putExtra("threadedReplies", feedResponseObject.toString());
 						startActivity(i);
@@ -243,9 +243,10 @@ public class FeedFragment extends SherlockFragment implements OnItemClickListene
 						System.out.println(likeResponse.toString());
 
 						Toast.makeText(getActivity(), "Liked Post", Toast.LENGTH_SHORT).show();
-
-						NetworkFactory.getFeedFromTo(0, feedArray.length());
-
+						
+						feedArray = NetworkFactory.getFeedFromTo(0, 20);
+						mListView.setAdapter(new JSONAdapter(getActivity(), feedArray));
+						
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
