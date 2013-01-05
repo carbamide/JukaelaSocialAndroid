@@ -27,6 +27,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jukaela.Jukaela.R;
+import com.jukaela.Jukaela.R.id;
+import com.jukaela.Jukaela.R.layout;
+import com.jukaela.Jukaela.R.menu;
+import com.jukaela.Jukaela.R.string;
 import com.urbanairship.AirshipConfigOptions;
 import com.urbanairship.Logger;
 import com.urbanairship.UAirship;
@@ -216,7 +221,7 @@ public class LoginActivity extends Activity {
 					sharedPrefs.edit().putBoolean("rememberMe", true).commit();
 				}
 
-				Intent i = new Intent(LoginActivity.this, FeedActivity.class);
+				Intent i = new Intent(LoginActivity.this, MainActivity.class);
 				i.putExtra("tempArray", feedResponseObject.toString());
 				startActivity(i);
 

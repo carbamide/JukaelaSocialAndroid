@@ -28,12 +28,11 @@
         android:targetSdkVersion="17" />
 
     <application
-        android:name="JukaelaApplication"
+        android:name="com.jukaela.Jukaela.JukaelaApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Sherlock.Light" >
-        
         <receiver android:name="com.jukaela.Jukaela.IntentReceiver" />
         <receiver android:name="com.urbanairship.CoreReceiver" />
         <receiver
@@ -65,7 +64,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jukaela.Jukaela.FeedActivity"
+            android:name="com.jukaela.Jukaela.FeedFragment"
             android:label="@string/title_activity_feed" >
         </activity>
         <activity
@@ -85,7 +84,7 @@
             android:label="@string/title_activity_image_viewer" >
         </activity>
         <activity
-            android:name="com.jukaela.Jukaela.UsersWhoLiked"
+            android:name="com.jukaela.Jukaela.UsersWhoLikedActivity"
             android:label="@string/title_activity_users_who_liked" >
         </activity>
 
@@ -104,6 +103,23 @@
             android:authorities="com.jukaela.Jukaela.urbanairship.provider"
             android:exported="false"
             android:multiprocess="true" />
+
+        <activity
+            android:name="com.jukaela.Jukaela.MentionsFragment"
+            android:label="@string/title_activity_mentions_activiy" >
+        </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.UsersFragment"
+            android:label="@string/title_activity_users" >
+        </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.DirectMessagesFragment"
+            android:label="@string/title_activity_direct_messages" >
+        </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.SettingsFragment"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
