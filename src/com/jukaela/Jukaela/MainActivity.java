@@ -41,10 +41,19 @@ public class MainActivity extends SherlockFragmentActivity {
 		ActionBar.Tab settingsTab = bar.newTab();
 
 		feedTab.setText("Feed");
+		feedTab.setIcon(R.drawable.feed);
+
 		mentionsTab.setText("Mentions");
+		mentionsTab.setIcon(R.drawable.mention);
+
 		usersTab.setText("Users");
+		usersTab.setIcon(R.drawable.users);
+
 		dmTab.setText("DM");
+		dmTab.setIcon(R.drawable.messages);
+
 		settingsTab.setText("Settings");
+		settingsTab.setIcon(R.drawable.settings);
 
 		feedTab.setTabListener(new JukaelaTabListener());
 		mentionsTab.setTabListener(new JukaelaTabListener());
