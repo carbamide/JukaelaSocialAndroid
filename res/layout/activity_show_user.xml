@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (c) 2011 ETH Zurich. All rights reserved. This program and 
+	the accompanying materials are made available under the terms of the GNU 
+	Public License v2.0 which accompanies this distribution, and is available 
+	at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html Contributors: Paolo 
+	Carta - Implementation Theus Hossmann - Implementation Dominik Schatzmann 
+	- Message specification
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/showUserRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/showTweetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
+
+        <LinearLayout
+            android:id="@+id/showUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/content_box"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp" >
+
+            <ImageView
+                android:id="@+id/showUserProfileImage"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="10dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp" >
+
+                <TextView
+                    android:id="@+id/showUserRealName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/twimightTextDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/showUserScreenName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/twimightTextDark"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/showLocalUserButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/content_box_bottom"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/showUserFollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Followers"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/showUserFriends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Friends"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/showUserButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/content_box_bottom"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="visible" >
+
+            <LinearLayout
+                android:id="@+id/showUserTofollow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:visibility="gone" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/showUserFollow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="Follow" />
+
+                <ImageButton
+                    android:id="@+id/showUserMention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/btn_reply" />
+
+                <ImageButton
+                    android:id="@+id/showUserMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/btn_dm"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/showUserAdditionalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/showUserDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:autoLink="web"
+                android:padding="10dp"
+                android:text="Description.."
+                android:textColor="@color/twimightTextDark"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/showUserTweetsButtons"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+
+            android:background="@drawable/content_box"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <Button
+                android:id="@+id/showUserFollowingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Following"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/showUserFollowersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Followers"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/showUserMicropostsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Posts"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

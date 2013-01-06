@@ -61,6 +61,7 @@ public class FeedFragment extends SherlockFragment implements OnItemClickListene
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int lastInScreen = firstVisibleItem + visibleItemCount;
+				
 				if((lastInScreen == totalItemCount)) { 
 					Toast.makeText(getActivity(), "Getting Posts", Toast.LENGTH_SHORT).show();
 

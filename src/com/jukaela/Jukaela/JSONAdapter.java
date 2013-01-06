@@ -95,7 +95,7 @@ public class JSONAdapter extends BaseAdapter implements ListAdapter {
 
 			break;
 		}
-		
+
 		content = (TextView)convertView.findViewById(R.id.micropost_content);
 		name = (TextView)convertView.findViewById(R.id.name);
 		thumbnail = (ImageView)convertView.findViewById(R.id.avatar);
@@ -110,25 +110,25 @@ public class JSONAdapter extends BaseAdapter implements ListAdapter {
 				externalImage.setClickable(true); 
 
 				externalImage.setOnClickListener(new OnClickListener() {
-		            @Override
-		            public void onClick(View view) {
-		        		JSONObject jsonObject = getItem(position);  
+					@Override
+					public void onClick(View view) {
+						JSONObject jsonObject = getItem(position);  
 
-		                System.out.println(String.format("ImageView clicked for the row %d", position));
-		                
+						System.out.println(String.format("ImageView clicked for the row %d", position));
+
 						try {
 							Intent i = new Intent(activity.getApplicationContext(), ImageViewerActivity.class);
 
 							i.putExtra("imageString", jsonObject.getString("image_url"));
-							
+
 							activity.startActivity(i);
 
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-		            }
-		        });
+					}
+				});
 				String imageURLString = jsonObject.getString("image_url");
 
 				ImageLoad downloader = new ImageLoad(externalImage, imageURLString.substring(imageURLString.lastIndexOf('/') + 1), activity); 
@@ -140,6 +140,32 @@ public class JSONAdapter extends BaseAdapter implements ListAdapter {
 				downloader.execute(externalImageToDownload);
 			}
 
+			thumbnail.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					JSONObject jsonObject = getItem(position);  
+					
+					try {
+						JSONObject userResponseObject = NetworkFactory.userInformation(jsonObject.getInt("user_id"));
+						
+						Intent i = new Intent(activity.getApplicationContext(), ShowUserActivity.class);
+						
+						i.putExtra("userDict", userResponseObject.toString());
+
+						activity.startActivity(i);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+
+				}
+			});
+			
 			content.setText(jsonObject.getString("content"));
 			name.setText(jsonObject.getString("name"));
 

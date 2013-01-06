@@ -160,11 +160,6 @@ public class PostActivity extends SherlockActivity implements OnClickListener {
 
 			return true;
 		}
-		else if (item.getItemId() == R.id.cancel) {
-			finish();
-
-			return true;
-		}
 
 		return super.onOptionsItemSelected(item);
 	}

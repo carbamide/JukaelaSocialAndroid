@@ -326,6 +326,17 @@ public class NetworkFactory {
 		return loginObject;
 	}
 
+	public static JSONObject userInformation(int userID) throws Exception {
+
+		System.out.println(String.format("%s/users/%d.json", server(), userID));
+		
+		String userResponse = NetworkFactory.getRequest(String.format("%s/users/%d.json", server(), userID));
+
+		System.out.println(userResponse);
+		
+		return new JSONObject(userResponse);
+	}
+	
 	public static String getAPID() {
 		return APID;
 	}

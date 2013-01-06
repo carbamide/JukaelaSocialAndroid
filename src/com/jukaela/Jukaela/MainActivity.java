@@ -3,6 +3,7 @@ package com.jukaela.Jukaela;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -90,7 +91,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		public void onTabSelected(Tab tab, FragmentTransaction ft) {
 			setTitle(tab.getText());
-			
+
 			if (tab.getPosition() == 0) {
 				try {
 					FeedFragment feed = new FeedFragment();
@@ -129,8 +130,14 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-			// TODO Auto-generated method stub
-
+			FeedFragment feed = (FeedFragment)getSupportFragmentManager().findFragmentById(R.id.the_feed);
+			
+			try {
+				feed.refreshListView();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

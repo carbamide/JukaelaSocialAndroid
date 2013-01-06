@@ -120,6 +120,14 @@
             android:name="com.jukaela.Jukaela.SettingsFragment"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.ShowUserActivity"
+            android:label="@string/title_activity_show_user" >
+        </activity>
     </application>
 
 </manifest>
