@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/showUserRoot"
     android:layout_width="match_parent"
@@ -164,6 +165,7 @@
                 android:id="@+id/showUserFollowingButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="Following"
@@ -173,6 +175,7 @@
                 android:id="@+id/showUserFollowersButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="Followers"
@@ -182,10 +185,12 @@
                 android:id="@+id/showUserMicropostsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="Posts"
                 android:visibility="visible" />
+
         </LinearLayout>
     </LinearLayout>
 

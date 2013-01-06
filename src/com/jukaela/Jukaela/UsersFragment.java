@@ -1,10 +1,13 @@
 package com.jukaela.Jukaela;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.jukaela.Jukaela.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +33,6 @@ public class UsersFragment extends SherlockFragment implements OnItemClickListen
 		super.onActivityCreated(savedInstanceState);
 		
 		getUsers();
-		
-
 	}
 
 	private void getUsers() {
@@ -48,7 +49,21 @@ public class UsersFragment extends SherlockFragment implements OnItemClickListen
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+		try {
+			JSONObject jsonObject = usersArray.getJSONObject(position);
+			JSONObject userResponseObject = NetworkFactory.userInformation(jsonObject.getInt("id"));
+			
+			Intent i = new Intent(getActivity().getApplicationContext(), ShowUserActivity.class);
+			i.putExtra("userDict", userResponseObject.toString());
+
+			getActivity().startActivity(i);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 	}
 }

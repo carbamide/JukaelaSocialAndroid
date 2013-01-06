@@ -326,15 +326,45 @@ public class NetworkFactory {
 		return loginObject;
 	}
 
-	public static JSONObject userInformation(int userID) throws Exception {
-
-		System.out.println(String.format("%s/users/%d.json", server(), userID));
-		
+	public static JSONObject userInformation(int userID) throws Exception {		
 		String userResponse = NetworkFactory.getRequest(String.format("%s/users/%d.json", server(), userID));
 
 		System.out.println(userResponse);
 		
 		return new JSONObject(userResponse);
+	}
+	
+	public static int numberOfFollowers(int userID) throws Exception {
+		String response = NetworkFactory.getRequest(String.format("%s/users/%d/number_of_followers", server(), userID));
+
+		return new JSONObject(response).getInt("count");
+	}
+	
+	public static int numberOfFollowing(int userID) throws Exception {
+		String response = NetworkFactory.getRequest(String.format("%s/users/%d/number_of_following", server(), userID));
+
+		return new JSONObject(response).getInt("count");
+	}
+	
+	public static int numberOfPosts(int userID) throws Exception {
+		String response = NetworkFactory.getRequest(String.format("%s/users/%d/number_of_posts", server(), userID));
+
+		return new JSONObject(response).getInt("count");
+	}
+
+	public static JSONObject followRequest(int userID) throws Exception {
+		
+		JSONObject followObject = new JSONObject();
+		followObject.put("commit", "Follow");
+		
+		JSONObject relationshipObject = new JSONObject();
+		relationshipObject.put("followed_id", userID);
+		
+		followObject.put("relationship", relationshipObject);
+
+		String response = NetworkFactory.makeRequest(createURLString("/relationships.json"), followObject);
+		
+		return new JSONObject(response);
 	}
 	
 	public static String getAPID() {

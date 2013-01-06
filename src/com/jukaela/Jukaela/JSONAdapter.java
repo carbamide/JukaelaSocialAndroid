@@ -193,7 +193,6 @@ public class JSONAdapter extends BaseAdapter implements ListAdapter {
 				repostString.setVisibility(View.GONE);				
 			}
 
-
 			ImageLoad downloader = new ImageLoad(thumbnail, jsonObject.getString("email"), activity); 
 
 			String stringToDownload = GravatarHelper.getURL(jsonObject.getString("email"), 65);
