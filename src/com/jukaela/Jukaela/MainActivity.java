@@ -21,6 +21,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public String tempArray;
 
+	private FeedFragment feed;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,6 +86,17 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			return true;
 		} 
+		else if (item.getItemId() == R.id.refresh) {
+			try {
+				System.out.println("Refreshing the feed");
+
+				feed.refreshListView();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -94,7 +107,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 			if (tab.getPosition() == 0) {
 				try {
-					FeedFragment feed = new FeedFragment();
+					feed = new FeedFragment();
 					feed.setFeedArray(new JSONArray(tempArray));
 
 					ft.replace(android.R.id.content, feed);
@@ -130,16 +143,15 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-			FeedFragment feed = (FeedFragment)getSupportFragmentManager().findFragmentById(R.id.the_feed);
-			
-			try {
-				feed.refreshListView();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (tab.getPosition() == 0) {
+				try {
+					feed.refreshListView();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
-
 	}
 
 }

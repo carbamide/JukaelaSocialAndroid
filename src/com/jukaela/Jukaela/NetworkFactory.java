@@ -40,7 +40,7 @@ public class NetworkFactory {
 	private static BasicCookieStore cookieStore = new BasicCookieStore();
 	private static String userID;
 	private static String APID;
-	
+
 	public enum SERVER_TYPE {
 		PRODUCTION, DEVELOPMENT
 	}
@@ -64,7 +64,7 @@ public class NetworkFactory {
 			PRODUCTION_SERVER = false;
 		}
 	}
-	
+
 	public static void setUserID(String tempUserID) {
 		userID = tempUserID;
 	}
@@ -258,29 +258,29 @@ public class NetworkFactory {
 
 	public static JSONArray getMentionsFromTo(int from, int to) throws Exception {
 		JSONObject mentionsObject = new JSONObject();
-		
+
 		mentionsObject.put("first", 0);
 		mentionsObject.put("last", 20);
-		
+
 		String mentionsResponse = NetworkFactory.makeRequest(NetworkFactory.createURLString("/pages/mentions.json"), mentionsObject);
 
 		System.out.println(mentionsResponse.toString());
-		
+
 		return new JSONArray(mentionsResponse);
 	}
-	
+
 	public static JSONArray getUsers() throws Exception {		
 		String usersResponse = NetworkFactory.getRequest(NetworkFactory.createURLString("/users.json"));
-		
+
 		return new JSONArray(usersResponse);
 	}
-	
+
 	public static JSONArray getDirectMessages() throws Exception {
 		String dmResponse = NetworkFactory.getRequest(NetworkFactory.createURLString("/direct_messages.json"));
-		
+
 		return new JSONArray(dmResponse);
 	}
-	
+
 	public static String deletePost(int micropostID) throws Exception {
 		String url = String.format("%s/microposts/%d.json", server(), micropostID);
 
@@ -307,20 +307,20 @@ public class NetworkFactory {
 
 		if (NetworkFactory.getAPID() != null) {
 			String APIDString = NetworkFactory.getAPID();
-			
+
 			loginInformation.put("apns", APIDString);
 		}
-		
+
 		JSONObject parameters = new JSONObject();
 
 		parameters.put("session", loginInformation);
 
 		System.out.println(NetworkFactory.createURLString("/sessions.json"));
-		
+
 		String response = NetworkFactory.makeRequest(NetworkFactory.createURLString("/sessions.json"), parameters);
 
 		JSONObject loginObject = new JSONObject(response);
-		
+
 		NetworkFactory.setUserID(loginObject.getString("id"));
 
 		return loginObject;
@@ -330,8 +330,24 @@ public class NetworkFactory {
 		String userResponse = NetworkFactory.getRequest(String.format("%s/users/%d.json", server(), userID));
 
 		System.out.println(userResponse);
-		
+
 		return new JSONObject(userResponse);
+	}
+
+	public static JSONArray currentlyFollowing() throws Exception {
+		String response = NetworkFactory.getRequest(String.format("%s/users/%s/following.json", server(), NetworkFactory.getUserID()));
+		
+		JSONObject tempObject = new JSONObject(response);
+		
+		return tempObject.getJSONArray("user");
+	}
+	
+	public static JSONArray relationships() throws Exception {
+		String response = NetworkFactory.getRequest(String.format("%s/users/%s/following.json", server(), NetworkFactory.getUserID()));
+		
+		JSONObject tempObject = new JSONObject(response);
+		
+		return tempObject.getJSONArray("relationships");
 	}
 	
 	public static int numberOfFollowers(int userID) throws Exception {
@@ -339,13 +355,13 @@ public class NetworkFactory {
 
 		return new JSONObject(response).getInt("count");
 	}
-	
+
 	public static int numberOfFollowing(int userID) throws Exception {
 		String response = NetworkFactory.getRequest(String.format("%s/users/%d/number_of_following", server(), userID));
 
 		return new JSONObject(response).getInt("count");
 	}
-	
+
 	public static int numberOfPosts(int userID) throws Exception {
 		String response = NetworkFactory.getRequest(String.format("%s/users/%d/number_of_posts", server(), userID));
 
@@ -353,18 +369,23 @@ public class NetworkFactory {
 	}
 
 	public static JSONObject followRequest(int userID) throws Exception {
-		
 		JSONObject followObject = new JSONObject();
 		followObject.put("commit", "Follow");
-		
+
 		JSONObject relationshipObject = new JSONObject();
 		relationshipObject.put("followed_id", userID);
-		
+
 		followObject.put("relationship", relationshipObject);
 
 		String response = NetworkFactory.makeRequest(createURLString("/relationships.json"), followObject);
-		
+
 		return new JSONObject(response);
+	}
+
+	public static void unfollowRequest(int unfollowID) throws Exception {
+		System.out.println(String.format("%s/relationships/%d.json", server(), unfollowID));
+		
+		NetworkFactory.deleteRequest(String.format("%s/relationships/%d.json", server(), unfollowID));
 	}
 	
 	public static String getAPID() {
@@ -374,7 +395,7 @@ public class NetworkFactory {
 	public static void setAPID(String aPID) {
 		APID = aPID;
 	}
-	
+
 	public static String server() {
 		if (PRODUCTION_SERVER == true) {
 			return "http://cold-planet-7717.herokuapp.com";
@@ -383,9 +404,9 @@ public class NetworkFactory {
 			return "http://10.0.2.2:3000";
 		}
 	}
-	
+
 	public static String createURLString(String endPoint) {
 		return String.format("%s%s", server(), endPoint);
 	}
-	
+
 }

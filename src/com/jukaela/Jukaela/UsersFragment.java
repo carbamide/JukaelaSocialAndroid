@@ -20,25 +20,26 @@ import android.widget.Toast;
 public class UsersFragment extends SherlockFragment implements OnItemClickListener {
 
 	private JSONArray usersArray;
+
 	private ListView usersListView;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup group, Bundle saved) {
 		return inflater.inflate(R.layout.activity_users, group, false);
 	}
-	
+
 	@Override
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		
+
 		getUsers();
 	}
 
 	private void getUsers() {
 		try {
 			usersArray = NetworkFactory.getUsers();
-			
+
 			usersListView = (ListView) getActivity().findViewById(R.id.users_list);
 			usersListView.setAdapter(new UserAdapter(getActivity(), usersArray));
 			usersListView.setOnItemClickListener(this);
@@ -53,7 +54,7 @@ public class UsersFragment extends SherlockFragment implements OnItemClickListen
 		try {
 			JSONObject jsonObject = usersArray.getJSONObject(position);
 			JSONObject userResponseObject = NetworkFactory.userInformation(jsonObject.getInt("id"));
-			
+
 			Intent i = new Intent(getActivity().getApplicationContext(), ShowUserActivity.class);
 			i.putExtra("userDict", userResponseObject.toString());
 
@@ -66,4 +67,6 @@ public class UsersFragment extends SherlockFragment implements OnItemClickListen
 			e.printStackTrace();
 		}  
 	}
+
+	
 }

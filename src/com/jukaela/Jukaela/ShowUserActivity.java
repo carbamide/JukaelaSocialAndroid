@@ -1,5 +1,6 @@
 package com.jukaela.Jukaela;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +27,11 @@ public class ShowUserActivity extends Activity {
 	private Button microposts;
 
 	private JSONObject userDict;
+	private JSONArray currentlyFollowing;
+	private JSONArray relationships;
+
+	private boolean followingStatus = false;
+	private int unfollowID = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +53,57 @@ public class ShowUserActivity extends Activity {
 		try {
 			userDict = new JSONObject(tempDict);
 
+			currentlyFollowing = NetworkFactory.currentlyFollowing();
+			relationships = NetworkFactory.relationships();
+
+			System.out.println(relationships.toString());
+			
 			fillInformation();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		follow.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				try {
-					JSONObject response = NetworkFactory.followRequest(userDict.getInt("id"));
-					
-					System.out.println(response.toString());
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (followingStatus == true) {
+					try {
+						NetworkFactory.unfollowRequest(unfollowID);
+
+						follow.setText("Follow");
+
+						unfollowID = 0;
+						followingStatus = false;
+
+						currentlyFollowing = NetworkFactory.currentlyFollowing();
+						relationships = NetworkFactory.relationships();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-				
+				else {
+					try {
+						JSONObject response = NetworkFactory.followRequest(userDict.getInt("id"));
+
+						System.out.println(response.toString());
+
+						follow.setText("Unfollow");
+
+						currentlyFollowing = NetworkFactory.currentlyFollowing();
+						relationships = NetworkFactory.relationships();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
-			
-		
 		});
 	}
 
@@ -96,10 +127,12 @@ public class ShowUserActivity extends Activity {
 		else {
 			description.setText("No profile specified");
 		}	
-		
+
 		microposts.setText(String.format("%d\nPosts", NetworkFactory.numberOfPosts(userDict.getInt("id"))));
 		following.setText(String.format("%d\nFollowing", NetworkFactory.numberOfFollowing(userDict.getInt("id"))));
 		followers.setText(String.format("%d\nFollowers", NetworkFactory.numberOfFollowers(userDict.getInt("id"))));
+
+		checkFollowingStatus();
 	}
 
 	@Override
@@ -108,5 +141,33 @@ public class ShowUserActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_show_user, menu);
 		return true;
 	}
+	public void checkFollowingStatus() throws JSONException {
+		System.out.println("check following status...");
 
+		for (int i = 0; i < currentlyFollowing.length(); i++) {
+			System.out.println("inside first loop");
+			JSONObject tempObject = currentlyFollowing.getJSONObject(i);
+
+			if (tempObject.getInt("id") == userDict.getInt("id")) {
+				follow.setText("Unfollow");
+
+				followingStatus = true;
+			}
+		}
+
+		for (int i = 0; i < relationships.length(); i++) {
+			System.out.println("inside second loop");
+
+			JSONObject tempObject = relationships.getJSONObject(i);
+
+			System.out.println(tempObject.toString());
+
+			if (!tempObject.isNull("followed_id")) {
+				if (tempObject.getInt("followed_id") == userDict.getInt("id")) {				
+					unfollowID = tempObject.getInt("id");
+					System.out.println(String.format("The unfollowID is %d", unfollowID));
+				}
+			}
+		}
+	}
 }

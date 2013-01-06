@@ -58,6 +58,7 @@ public class FeedFragment extends SherlockFragment implements OnItemClickListene
 		mListView.setOnScrollListener(new OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {}
+			
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				int lastInScreen = firstVisibleItem + visibleItemCount;
@@ -261,8 +262,6 @@ public class FeedFragment extends SherlockFragment implements OnItemClickListene
 					}
 			}
 		});
-
-
 		
 		AlertDialog alert = builder.create();
 
