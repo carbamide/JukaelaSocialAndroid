@@ -14,13 +14,12 @@
     <PreferenceScreen
         android:key="Profile"
         android:summary="Edit your Profile"
-        android:id=@
         android:title="Profile" >
         <EditTextPreference
             android:name="Name"
             android:key="name"
             android:summary="Your real name"
-            android:title="Name" />
+            android:title="Name"/>
         <EditTextPreference
             android:name="Username"
             android:key="username"
