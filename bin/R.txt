@@ -773,7 +773,5 @@ int styleable SherlockTheme_windowNoTitle 59
 int styleable SherlockTheme_windowSplitActionBar 63
 int[] styleable SherlockView { 0x010100da }
 int styleable SherlockView_android_focusable 0
-int xml pref_data_sync 0x7f040000
-int xml pref_general 0x7f040001
-int xml pref_headers 0x7f040002
-int xml pref_notification 0x7f040003
+int xml pref_general 0x7f040000
+int xml pref_headers 0x7f040001
