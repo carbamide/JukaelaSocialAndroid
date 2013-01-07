@@ -11,8 +11,10 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShowUserActivity extends Activity {
 
@@ -21,10 +23,12 @@ public class ShowUserActivity extends Activity {
 	private TextView screenName;
 	private Button follow;
 	private TextView description;
-	private TextView stats;
 	private Button following;
 	private Button followers;
 	private Button microposts;
+	private ImageButton mentionUser;
+	private ImageButton dmUser;
+
 
 	private JSONObject userDict;
 	private JSONArray currentlyFollowing;
@@ -46,6 +50,8 @@ public class ShowUserActivity extends Activity {
 		following = (Button)findViewById(R.id.showUserFollowingButton);
 		followers = (Button)findViewById(R.id.showUserFollowersButton);
 		microposts = (Button)findViewById(R.id.showUserMicropostsButton);
+		mentionUser = (ImageButton)findViewById(R.id.showUserMention);
+		dmUser = (ImageButton)findViewById(R.id.showUserMessage);
 
 		Intent intent = getIntent();
 		String tempDict = intent.getStringExtra("userDict");
@@ -57,7 +63,7 @@ public class ShowUserActivity extends Activity {
 			relationships = NetworkFactory.relationships();
 
 			System.out.println(relationships.toString());
-			
+
 			fillInformation();
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -65,46 +71,13 @@ public class ShowUserActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		follow.setOnClickListener(new OnClickListener() {
+		follow.setOnClickListener(followUnfollowAction(follow));
+		mentionUser.setOnClickListener(mentionUserAction(mentionUser));
+		dmUser.setOnClickListener(sendDirectMessageAction(dmUser));
+		following.setOnClickListener(showFollowingAction(following));
+		followers.setOnClickListener(showFollowersAction(followers));
+		microposts.setOnClickListener(showMicropostsAction(microposts));
 
-			@Override
-			public void onClick(View v) {
-				if (followingStatus == true) {
-					try {
-						NetworkFactory.unfollowRequest(unfollowID);
-
-						follow.setText("Follow");
-
-						unfollowID = 0;
-						followingStatus = false;
-
-						currentlyFollowing = NetworkFactory.currentlyFollowing();
-						relationships = NetworkFactory.relationships();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else {
-					try {
-						JSONObject response = NetworkFactory.followRequest(userDict.getInt("id"));
-
-						System.out.println(response.toString());
-
-						follow.setText("Unfollow");
-
-						currentlyFollowing = NetworkFactory.currentlyFollowing();
-						relationships = NetworkFactory.relationships();
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		});
 	}
 
 	private void fillInformation() throws Exception {
@@ -164,5 +137,93 @@ public class ShowUserActivity extends Activity {
 				}
 			}
 		}
+	}
+
+	public OnClickListener followUnfollowAction(Button ib) {
+		return new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (followingStatus == true) {
+					try {
+						NetworkFactory.unfollowRequest(unfollowID);
+
+						follow.setText("Follow");
+
+						unfollowID = 0;
+						followingStatus = false;
+
+						currentlyFollowing = NetworkFactory.currentlyFollowing();
+						relationships = NetworkFactory.relationships();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else {
+					try {
+						JSONObject response = NetworkFactory.followRequest(userDict.getInt("id"));
+
+						System.out.println(response.toString());
+
+						follow.setText("Unfollow");
+
+						currentlyFollowing = NetworkFactory.currentlyFollowing();
+						relationships = NetworkFactory.relationships();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+	}
+	public OnClickListener mentionUserAction(ImageButton ib) {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Clicked mention user", Toast.LENGTH_SHORT).show();
+
+			}
+		};
+	}
+	public OnClickListener sendDirectMessageAction(ImageButton ib) {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Clicked DM", Toast.LENGTH_SHORT).show();
+
+			}
+		};
+	}
+	public OnClickListener showFollowingAction(Button following2) {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Clicked Following", Toast.LENGTH_SHORT).show();
+
+			}
+		};
+	}
+	public OnClickListener showFollowersAction(Button ib) {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Clicked Followers", Toast.LENGTH_SHORT).show();
+
+			}
+		};
+	}
+	public OnClickListener showMicropostsAction(Button ib) {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Clicked Posts", Toast.LENGTH_SHORT).show();
+
+			}
+		};
 	}
 }

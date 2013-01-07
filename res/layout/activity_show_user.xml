@@ -83,14 +83,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/btn_reply" />
+                    android:src="@drawable/send" />
 
                 <ImageButton
                     android:id="@+id/showUserMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/btn_dm"
+                    android:src="@drawable/messages"
                     android:visibility="visible" />
             </LinearLayout>
         </LinearLayout>
