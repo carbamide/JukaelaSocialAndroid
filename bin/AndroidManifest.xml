@@ -122,11 +122,15 @@
         </activity>
         <activity
             android:name="com.jukaela.Jukaela.SettingsActivity"
-            android:label="@string/title_activity_settings">
+            android:label="@string/title_activity_settings" >
         </activity>
         <activity
             android:name="com.jukaela.Jukaela.ShowUserActivity"
             android:label="@string/title_activity_show_user" >
+        </activity>
+        <activity
+            android:name="com.jukaela.Jukaela.DirectMessageComposerActivity"
+            android:label="@string/title_activity_direct_message_composer" >
         </activity>
     </application>
 

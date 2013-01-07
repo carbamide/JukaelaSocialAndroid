@@ -63,14 +63,18 @@ public class ImageLoad extends AsyncTask<String, Void, Bitmap> {
 					SharedPreferences.Editor editor = sharedPrefs.edit();
 
 					Date date = new Date(System.currentTimeMillis());
-					
+
 					editor.putLong("dateOfGravatarSave", date.getTime());
 					editor.commit();
-					
+
 					FileOutputStream out = activity.getApplicationContext().openFileOutput(emailAddress, Context.MODE_PRIVATE);
 
-					if (out != null) {
-						bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+					try {
+						if (out != null) {
+							bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+						}
+					} catch (NullPointerException e) {
+						e.printStackTrace();
 					}
 				} 
 				catch (FileNotFoundException e) {
@@ -78,6 +82,7 @@ public class ImageLoad extends AsyncTask<String, Void, Bitmap> {
 				}
 
 				imageView.setImageBitmap(ImageHelper.getRoundedCornerBitmap(result, 8)); 
+
 			} 
 		} 
 	} 
@@ -96,18 +101,18 @@ public class ImageLoad extends AsyncTask<String, Void, Bitmap> {
 
 					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
 					SharedPreferences.Editor editor = sharedPrefs.edit();
-					
+
 					Date currentTime = new Date(System.currentTimeMillis());
 
 					long currentMillis = currentTime.getTime();					
 					long savedTime = sharedPrefs.getLong("dateOfGravatarSave", 0);
-					
+
 					boolean retrieveNormally = false;
-					
+
 					if ((currentMillis - savedTime) > 84600000) {
 						retrieveNormally = true;
 					}
-					
+
 					if (retrieveNormally = true) {
 						return;
 					}

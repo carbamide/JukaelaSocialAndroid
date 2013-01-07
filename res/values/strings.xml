@@ -17,5 +17,6 @@
     <string name="title_activity_direct_messages">DirectMessagesActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_show_user">ShowUserActivity</string>
+    <string name="title_activity_direct_message_composer">DirectMessageComposerActivity</string>
 
 </resources>

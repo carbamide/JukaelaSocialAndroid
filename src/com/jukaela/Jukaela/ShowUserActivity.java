@@ -185,7 +185,16 @@ public class ShowUserActivity extends Activity {
 		return new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Clicked mention user", Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(getApplicationContext(), PostActivity.class);
+
+				try {
+					i.putExtra("replyString", String.format("@%s", userDict.getString("username")));
+
+					startActivity(i);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		};
@@ -194,8 +203,16 @@ public class ShowUserActivity extends Activity {
 		return new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Clicked DM", Toast.LENGTH_SHORT).show();
+				try {
+					Intent i = new Intent(getApplicationContext(), DirectMessageComposerActivity.class);
 
+					i.putExtra("username", userDict.getString("username"));
+
+					startActivity(i);
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 		};
 	}

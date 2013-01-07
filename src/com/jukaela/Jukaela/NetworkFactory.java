@@ -23,6 +23,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -374,6 +375,27 @@ public class NetworkFactory {
 		return new JSONObject(response);
 	}
 
+	public static JSONObject directMessage(String content, String username) throws Exception {
+		JSONObject dmObject = new JSONObject();
+		
+		JSONObject contentObject = new JSONObject();
+		
+		contentObject.put("content", content);
+		contentObject.put("from_user_id", NetworkFactory.getUserID());
+		
+		dmObject.put("direct_message", contentObject);
+		dmObject.put("username", username);
+
+		System.out.println(dmObject.toString());
+		
+		String response = NetworkFactory.makeRequest(createURLString("/direct_messages.json"), dmObject);
+		
+		System.out.println(response);
+		// @"{\"direct_message\": {\"content\":\"%@\", \"from_user_id\":%@}, \"username\" : \"%@\"}", content, userID, username];
+
+		return new JSONObject(response);
+	}
+	
 	public static void unfollowRequest(int unfollowID) throws Exception {		
 		NetworkFactory.deleteRequest(String.format("%s/relationships/%d.json", server(), unfollowID));
 	}
