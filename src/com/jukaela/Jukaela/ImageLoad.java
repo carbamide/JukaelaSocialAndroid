@@ -7,13 +7,16 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.widget.ImageView;
 
 public class ImageLoad extends AsyncTask<String, Void, Bitmap> { 
@@ -56,7 +59,14 @@ public class ImageLoad extends AsyncTask<String, Void, Bitmap> {
 
 				try {
 					System.out.println("Trying to save bitmap");
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+					SharedPreferences.Editor editor = sharedPrefs.edit();
 
+					Date date = new Date(System.currentTimeMillis());
+					
+					editor.putLong("dateOfGravatarSave", date.getTime());
+					editor.commit();
+					
 					FileOutputStream out = activity.getApplicationContext().openFileOutput(emailAddress, Context.MODE_PRIVATE);
 
 					if (out != null) {
@@ -73,6 +83,8 @@ public class ImageLoad extends AsyncTask<String, Void, Bitmap> {
 	} 
 
 
+	@SuppressLint("CommitPrefEdits")
+	@SuppressWarnings("unused")
 	protected void onPreExecute() { 
 		if (imageViewReference != null) { 
 			ImageView imageView = imageViewReference.get(); 
@@ -82,7 +94,24 @@ public class ImageLoad extends AsyncTask<String, Void, Bitmap> {
 
 					Bitmap localBitmap = BitmapFactory.decodeStream(inputStream);
 
-					if (localBitmap != null) {
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+					SharedPreferences.Editor editor = sharedPrefs.edit();
+					
+					Date currentTime = new Date(System.currentTimeMillis());
+
+					long currentMillis = currentTime.getTime();					
+					long savedTime = sharedPrefs.getLong("dateOfGravatarSave", 0);
+					
+					boolean retrieveNormally = false;
+					
+					if ((currentMillis - savedTime) > 84600000) {
+						retrieveNormally = true;
+					}
+					
+					if (retrieveNormally = true) {
+						return;
+					}
+					else if (localBitmap != null) {
 						imageView.setImageBitmap(ImageHelper.getRoundedCornerBitmap(localBitmap, 8)); 
 
 						cancel(true);

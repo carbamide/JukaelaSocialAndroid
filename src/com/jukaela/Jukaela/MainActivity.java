@@ -3,7 +3,6 @@ package com.jukaela.Jukaela;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +14,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.jukaela.Jukaela.R;
 
 public class MainActivity extends SherlockFragmentActivity {
 
@@ -37,7 +35,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		ActionBar.Tab mentionsTab = bar.newTab();
 		ActionBar.Tab usersTab = bar.newTab();
 		ActionBar.Tab dmTab = bar.newTab();
-		ActionBar.Tab settingsTab = bar.newTab();
 
 		feedTab.setText("Feed");
 		feedTab.setIcon(R.drawable.feed);
@@ -51,20 +48,15 @@ public class MainActivity extends SherlockFragmentActivity {
 		dmTab.setText("DM");
 		dmTab.setIcon(R.drawable.messages);
 
-		settingsTab.setText("Settings");
-		settingsTab.setIcon(R.drawable.settings);
-
 		feedTab.setTabListener(new JukaelaTabListener());
 		mentionsTab.setTabListener(new JukaelaTabListener());
 		usersTab.setTabListener(new JukaelaTabListener());
 		dmTab.setTabListener(new JukaelaTabListener());
-		settingsTab.setTabListener(new JukaelaTabListener());
 
 		bar.addTab(feedTab);
 		bar.addTab(mentionsTab);
 		bar.addTab(usersTab);
 		bar.addTab(dmTab);
-		bar.addTab(settingsTab);
 
 	}
 
@@ -72,7 +64,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 
-		inflater.inflate(R.menu.feed_menu, menu);
+		inflater.inflate(R.menu.main_menu, menu);
 
 		return true;
 	}
@@ -91,12 +83,25 @@ public class MainActivity extends SherlockFragmentActivity {
 				System.out.println("Refreshing the feed");
 
 				feed.refreshListView();
+				
+				return true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		else if (item.getItemId() == R.id.settings) {
+			try {
+				Intent i = new Intent(this, SettingsActivity.class);
 
+				startActivity(i);
+				
+				return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -125,13 +130,9 @@ public class MainActivity extends SherlockFragmentActivity {
 				UsersFragment usersFragment = new UsersFragment();
 				ft.replace(android.R.id.content, usersFragment);
 			}
-			else if (tab.getPosition() == 3) {
+			else {
 				DirectMessagesFragment dmFragment = new DirectMessagesFragment();
 				ft.replace(android.R.id.content, dmFragment);
-			}
-			else {
-				SettingsFragment settingsFragment = new SettingsFragment();
-				ft.replace(android.R.id.content, settingsFragment);
 			}
 		}
 

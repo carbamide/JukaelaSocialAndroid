@@ -1065,6 +1065,7 @@ containing a value of this type.
         public static final int reply=0x7f050069;
         public static final int repost=0x7f05006a;
         public static final int repostString=0x7f050063;
+        public static final int settings=0x7f05006d;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showNewTweetRoot=0x7f050041;
@@ -1159,7 +1160,7 @@ containing a value of this type.
         public static final int activity_users=0x7f0d000a;
         public static final int activity_users_who_liked=0x7f0d000b;
         public static final int feed_context_menu=0x7f0d000c;
-        public static final int feed_menu=0x7f0d000d;
+        public static final int main_menu=0x7f0d000d;
         public static final int post_menu=0x7f0d000e;
     }
     public static final class string {

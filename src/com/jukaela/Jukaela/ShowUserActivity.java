@@ -142,8 +142,6 @@ public class ShowUserActivity extends Activity {
 		return true;
 	}
 	public void checkFollowingStatus() throws JSONException {
-		System.out.println("check following status...");
-
 		for (int i = 0; i < currentlyFollowing.length(); i++) {
 			System.out.println("inside first loop");
 			JSONObject tempObject = currentlyFollowing.getJSONObject(i);
@@ -160,12 +158,9 @@ public class ShowUserActivity extends Activity {
 
 			JSONObject tempObject = relationships.getJSONObject(i);
 
-			System.out.println(tempObject.toString());
-
 			if (!tempObject.isNull("followed_id")) {
 				if (tempObject.getInt("followed_id") == userDict.getInt("id")) {				
 					unfollowID = tempObject.getInt("id");
-					System.out.println(String.format("The unfollowID is %d", unfollowID));
 				}
 			}
 		}

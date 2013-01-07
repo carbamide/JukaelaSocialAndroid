@@ -226,8 +226,6 @@ public class NetworkFactory {
 			postObject.put("in_reply_to", inReplyTo);
 		}
 
-		System.out.println(postObject.toString());
-
 		String feedResponse = NetworkFactory.makeRequest(NetworkFactory.createURLString("/microposts.json"), postObject);
 
 		return new JSONObject(feedResponse);
@@ -263,8 +261,6 @@ public class NetworkFactory {
 		mentionsObject.put("last", 20);
 
 		String mentionsResponse = NetworkFactory.makeRequest(NetworkFactory.createURLString("/pages/mentions.json"), mentionsObject);
-
-		System.out.println(mentionsResponse.toString());
 
 		return new JSONArray(mentionsResponse);
 	}
@@ -315,8 +311,6 @@ public class NetworkFactory {
 
 		parameters.put("session", loginInformation);
 
-		System.out.println(NetworkFactory.createURLString("/sessions.json"));
-
 		String response = NetworkFactory.makeRequest(NetworkFactory.createURLString("/sessions.json"), parameters);
 
 		JSONObject loginObject = new JSONObject(response);
@@ -328,8 +322,6 @@ public class NetworkFactory {
 
 	public static JSONObject userInformation(int userID) throws Exception {		
 		String userResponse = NetworkFactory.getRequest(String.format("%s/users/%d.json", server(), userID));
-
-		System.out.println(userResponse);
 
 		return new JSONObject(userResponse);
 	}
@@ -382,9 +374,7 @@ public class NetworkFactory {
 		return new JSONObject(response);
 	}
 
-	public static void unfollowRequest(int unfollowID) throws Exception {
-		System.out.println(String.format("%s/relationships/%d.json", server(), unfollowID));
-		
+	public static void unfollowRequest(int unfollowID) throws Exception {		
 		NetworkFactory.deleteRequest(String.format("%s/relationships/%d.json", server(), unfollowID));
 	}
 	
