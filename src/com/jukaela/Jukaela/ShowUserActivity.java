@@ -78,6 +78,21 @@ public class ShowUserActivity extends Activity {
 		followers.setOnClickListener(showFollowersAction(followers));
 		microposts.setOnClickListener(showMicropostsAction(microposts));
 
+		try {
+			if (userDict.getString("id") == NetworkFactory.getUserID()) {
+	             follow.setVisibility(View.GONE);
+	             mentionUser.setVisibility(View.GONE);
+	             dmUser.setVisibility(View.GONE);
+			}
+			else {
+	             follow.setVisibility(View.VISIBLE);
+	             mentionUser.setVisibility(View.VISIBLE);
+	             dmUser.setVisibility(View.VISIBLE);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void fillInformation() throws Exception {
